@@ -43,5 +43,14 @@ public class UserService {
         return mapper.toDomain(saved);
     }
 
+    public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new RuntimeException("User no encontrado con id: " + id);
+        }
+
+        userRepository.deleteById(id);
+    }
+
+
     //comentario para jenkins
 }

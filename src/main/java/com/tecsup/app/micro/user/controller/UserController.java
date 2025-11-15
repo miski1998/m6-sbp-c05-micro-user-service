@@ -37,5 +37,13 @@ public class UserController {
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        log.info("REST requestpara eliminar usuario con id: {}", id);
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
 }

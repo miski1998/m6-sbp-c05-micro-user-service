@@ -29,7 +29,7 @@ class UserServiceTest {
         Long NEW_ID = 1L;
 
         // ---------- DTO enviado desde el controller ----------
-        User input = User.builder()
+        User inputDTO = User.builder()
                 .id(null)
                 .name("Eder")
                 .email("eder@gmail.com")
@@ -38,7 +38,7 @@ class UserServiceTest {
                 .build();
 
         // ---------- Entity antes de guardar ----------
-        UserEntity entityToSave = userMapper.toEntity(input);
+        UserEntity entityToSave = userMapper.toEntity(inputDTO);
 
         // ---------- Entity que el repositorio devolverá (mock) ----------
         UserEntity savedEntity = new UserEntity(
@@ -53,7 +53,7 @@ class UserServiceTest {
         when(userRepository.save(entityToSave)).thenReturn(savedEntity);
 
         // ---------- Ejecutar servicio ----------
-        User result = userService.createUser(input);
+        User result = userService.createUser(inputDTO);
 
         // ---------- Validaciones ----------
         assertNotNull(result);

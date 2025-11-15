@@ -31,5 +31,17 @@ public class UserService {
         return this.mapper.toDomain(entities);
 
     }
+
+    public User createUser(User user) {
+        // Convertir el DTO a Entity
+        UserEntity entity = mapper.toEntity(user);
+
+        // Guardar en BD
+        UserEntity saved = userRepository.save(entity);
+
+        // Retornar DTO
+        return mapper.toDomain(saved);
+    }
+
     //comentario para jenkins
 }
